@@ -7,6 +7,7 @@ namespace App\Controller\Web\Admin;
 use App\Document\EventTimeline;
 use App\DocumentService\EventTimelineDocumentService;
 use App\Service\Interface\EventServiceInterface;
+use PHPUnit\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -16,6 +17,7 @@ use TypeError;
 class EventAdminController extends AbstractAdminController
 {
     private const VIEW_ADD = 'event/create.html.twig';
+    private const VIEW_EDIT = 'event/edit.html.twig';
 
     public function __construct(
         private EventServiceInterface $service,
@@ -88,5 +90,51 @@ class EventAdminController extends AbstractAdminController
         }
 
         return $this->list();
+    }
+
+    public function edit(?Uuid $id, Request $request): Response
+    {
+        try {
+            $event = $this->service->get($id);
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+
+            return $this->redirectToRoute('admin_event_list');
+        }
+
+        if (Request::METHOD_POST !== $request->getMethod()) {
+            return $this->render(self::VIEW_EDIT,
+                ['event' => $event]);
+        }
+
+        $name = $request->request->get('name');
+        $subtitle = $request->request->get('subtitle');
+        $shortDescription = $request->request->get('short_description');
+        $longDescription = $request->request->get('long_description');
+        $siteUrl = $request->request->get('site_url');
+        $linkDescription = $request->request->get('link_description');
+
+
+        $ageRating = $request->request->get('age_rating');
+        $culturalLanguage = $request->request->get('cultural_language');
+        $dataToUpdate = [
+
+        ];
+
+        try {
+            $this->service->update($id, $dataToUpdate);
+
+            $this->addFlashSuccess($this->translator->trans('view.event.message.updated'));
+
+            return $this->redirectToRoute('admin_event_list');
+        } catch (TypeError $exception) {
+            $this->addFlashError($exception->getMessage());
+
+            return $this->render(self::VIEW_EDIT, [
+                'event' => $event,
+                'error' => $exception->getMessage(),
+            ]);
+        }
+
     }
 }

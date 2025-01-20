@@ -1,0 +1,317 @@
+<section class="entity-container mx-auto">
+    <p class="mt-4">
+        Campos marcados com
+        <small class="text-danger">*</small>
+        são de preenchimento obrigatório.
+    </p>
+    <fieldset class="bg-white rounded-1">
+        <legend class="fw-bold m-4 text-primary">{{'view.event.edit.presentation' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4">
+            <p>
+                {{ 'view.event.edit.presentation_description' |trans}}
+            </p>
+
+            <hr class="mb-3">
+
+            {% include '_components/forms/image-with-preview.html.twig' with {
+                id: 'cover-image',
+                label: 'add_cover_image' | trans,
+                inputName: 'extraFields[cover_image]',
+                defaultImage: event.exraFields.coverImage | default,
+            }%}
+
+            {% include '_components/forms/image-with-preview.html.twig' with {
+                id: 'profile-image',
+                inputName: 'image',
+                defaultImage: event.image|default,
+            } %}
+
+            <div class="mt-0">
+                <label class="fw-bold d-block">
+                    {{ 'name_event'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <input class="form-control mt-2">
+            </div>
+
+            <div class="mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'view.event.edit.event_subtitle'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <input class="form-control mt-2">
+            </div>
+
+            <div class="mt-4 fw-bold">
+                {% include '_components/tags-selector.html.twig' with {
+                    inputName: 'cuturalArea',
+                    inputLabel: 'cultural_languages' | trans,
+                    items: [
+                        { value: 'Artesanato', label: 'Artesanato' },
+                        { value: 'Cinema', label: 'Cinema' },
+                        { value: 'Dança', label: 'Dança' },
+                        { value: 'Fotografia', label: 'Fotografia' },
+                        { value: 'Outros', label: 'Outros' },
+                    ],
+                    tags:[],
+                    required: true,
+                }%}
+            </div>
+
+            <div class="mt-4 fw-bold">
+                {% include '_components/tags-selector.html.twig' with {
+                    inputName: 'tags',
+                    inputLabel: 'tags' | trans,
+                    items: [
+                        { value: 'Artesanato', label: 'Artesanato' },
+                        { value: 'Cinema', label: 'Cinema' },
+                        { value: 'Dança', label: 'Dança' },
+                        { value: 'Fotografia', label: 'Fotografia' },
+                        { value: 'Outros', label: 'Outros' },
+                    ],
+                    tags:[],
+                    required: true,
+                }%}
+            </div>
+
+            <div class="mt-4 mb-lg-1">
+                <label class="fw-bold d-block">
+                    {{ 'short_description'| trans }}
+
+                </label>
+                <textarea id="promotion-object" class="form-control mt-2" name="promotionObject" style="height: 100px" placeholder="Digite"></textarea>
+            </div>
+
+            <div class="mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'long_description'| trans }}
+
+                </label>
+                <textarea id="promotion-object" class="form-control mt-2" name="promotionObject" style="height: 200px" placeholder="Digite"></textarea>
+            </div>
+
+            <h6 class="mt-5 fw-bold">{{ 'site'| trans }}</h6>
+
+            <div class="row mb-4">
+
+                <div class="col-md-6">
+                    <label>
+                        Link (URL):
+                    </label>
+                    <input class="form-control mt-2" placeholder="https://www.site.com">
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        Descrição do link:
+                    </label>
+                    <input class="form-control mt-2" placeholder="Digite">
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+
+        <legend class="fw-bold m-4 text-primary">{{'view.event.edit.about_event' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4 mb-5">
+            <p>
+                {{ 'view.event.edit.presentation_description' | trans }}
+            </p>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md">
+                    <label class="fw-bold d-block">
+                        {{ 'age_rating'| trans }}
+                        <small class="text-danger">*</small>
+                    </label>
+                    <select class="form-select"></select>
+                </div>
+
+                <div class="col-md">
+                    <label class="fw-bold d-block">
+                        {{ 'view.event.edit.maximum_capacity'| trans }}
+                    </label>
+                    <input class="form-control">
+                </div>
+
+                <div class="col-md">
+                    <label class="fw-bold d-block">
+                        {{ 'view.event.edit.phone_to_information'| trans }}
+                    </label>
+                    <input class="form-control">
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'inscription_'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <select class="form-select"></select>
+            </div>
+
+            <hr>
+
+            <h6 class="fw-bold mt-5">{{ 'accessibility'| trans }}</h6>
+
+            <div>
+                <h6 class="fw-bold mt-4">Libras</h6>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="libras_yes" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libras_yes">Sim</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio"  id="libras_no" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libra_no">Não</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="libras_not_informed" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libras_not_informed">Não informado</label>
+                </div>
+
+            </div>
+
+            <div>
+                <h6 class="fw-bold mt-3">{{ 'audio_description'| trans }}</h6>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="audio_descriptio_yes" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libras_yes">Sim</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio"  id="audio_descriptio_no" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libra_no">Não</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="audio_descriptio_not_informed" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libras_not_informed">Não informado</label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+        <legend class="fw-bold m-4">{{'view.event.edit.occurrence_title' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-5 mb-5">
+
+            <p>{{ 'view.event.edit.occurrence_description'| trans }}</p>
+
+            <hr>
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+
+        <legend class="fw-bold m-4 text-primary">{{'social_media' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4 mb-5">
+
+            <p>
+                {{ 'view.event.edit.presentation_description' | trans }}
+            </p>
+
+            <hr>
+
+            <div class="container-fluid">
+
+                <p class="fw-bold mt-5">
+                    {{ 'social_media'| trans }}
+                </p>
+
+                <div class="row">
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Instagram
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            X(antigo twitter)
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Facebook
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Vimeo
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            YouTube
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            LinkedIn
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Spotify
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Pinterest
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                    <div class="col-md">
+                        <label class="fw-bold">
+                            Tiktok
+                        </label>
+                        <input class="form-control mt-1">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+</section>
