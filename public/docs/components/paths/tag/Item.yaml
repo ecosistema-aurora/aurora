@@ -1,4 +1,8 @@
 get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tags
   summary: Recupera uma única tag
   responses:
     '200':

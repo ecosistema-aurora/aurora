@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
 
-final class TagApiController extends AbstractApiController
+class TagApiController extends AbstractApiController
 {
     public function __construct(
         private readonly TagServiceInterface $service,
