@@ -26,7 +26,7 @@ class TagAdminController extends AbstractAdminController
 
     public function list(): Response
     {
-        return $this->render('/tag/list.html.twig', [
+        return $this->render(self::LIST, [
             'tags' => $this->tagService->list(),
         ]);
     }
