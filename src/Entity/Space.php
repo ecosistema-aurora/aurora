@@ -30,11 +30,11 @@ class Space extends AbstractEntity
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups(['space.get', 'space.get.item'])]
     private ?string $shortDescription = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private ?string $longDescription = null;
 
     #[ORM\Column(nullable: true)]
@@ -42,27 +42,27 @@ class Space extends AbstractEntity
     private ?string $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private ?string $coverImage = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private ?string $site = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private ?string $email = null;
 
     #[ORM\Column(length: 20, nullable: true)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(type: Types::INTEGER)]
-    #[Groups('space.get')]
+    #[Groups('space.get.item')]
     private int $maxCapacity;
 
     #[ORM\Column(type: Types::BOOLEAN)]
-    #[Groups('space.get')]
+    #[Groups(['space.get', 'space.get.item'])]
     private bool $isAccessible;
 
     #[ORM\OneToOne(targetEntity: SpaceAddress::class, mappedBy: 'owner', cascade: ['persist', 'remove'])]

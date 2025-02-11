@@ -405,19 +405,12 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
             'shortDescription' => $space->getShortDescription(),
-            'longDescription' => $space->getLongDescription(),
             'image' => $space->getImage(),
-            'coverImage' => null,
-            'site' => $space->getSite(),
-            'email' => $space->getEmail(),
-            'phoneNumber' => $space->getPhoneNumber(),
-            'maxCapacity' => $space->getMaxCapacity(),
             'isAccessible' => $space->getIsAccessible(),
             'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'parent' => null,
             'activityAreas' => [
                 [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
