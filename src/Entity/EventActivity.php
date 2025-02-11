@@ -39,7 +39,6 @@ class EventActivity
     private ?DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    #[Groups(['event-activity.get'])]
     private ?DateTimeInterface $endDate = null;
 
     public function getId(): ?Uuid
