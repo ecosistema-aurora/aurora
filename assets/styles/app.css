@@ -673,6 +673,21 @@ img.card-images__entity-details {
     .pill-tabs:last-child {
         padding-right: 3rem;
     }
+
+    .title-fs {
+        font-size: 1.35rem;
+    }
+
+    .form-select.entity {
+        width: 150px;
+    }
+
+    .entity-seals {
+        gap: 0.3rem;
+        align-items: start;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
 }
 
 @media (max-width: 576px) {
