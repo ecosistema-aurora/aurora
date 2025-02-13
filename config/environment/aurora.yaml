@@ -88,10 +88,6 @@ sidebar:
       admin_tag_list:
         icon: label
         text: tags
-      admin_activity_area_list:
-        icon: category
-        text: area_of_activity
-        route: admin_activity_area_list
 
 homepage:
   sections:

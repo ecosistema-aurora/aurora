@@ -20,9 +20,9 @@ class OrganizationWebController extends AbstractWebController
     public function list(Request $request): Response
     {
         $filters = $request->query->all();
+        $filters = $this->getOrderParam($filters);
 
-        $organizations = $this->service->list(params: $filters);
-
+        $organizations = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalOrganizations = count($organizations);
 
         $dashboard = [
@@ -40,6 +40,19 @@ class OrganizationWebController extends AbstractWebController
             'organizations' => $organizations,
             'totalOrganizations' => $totalOrganizations,
         ]);
+    }
+
+    public function getOrderParam(array $filters): array
+    {
+        $order = 'DESC';
+
+        if (isset($filters['order']) && in_array(strtoupper($filters['order']), ['ASC', 'DESC'])) {
+            $order = strtoupper($filters['order']);
+        }
+
+        unset($filters['order']);
+
+        return ['order' => $order, 'filters' => $filters];
     }
 
     public function getOne(Uuid $id): Response

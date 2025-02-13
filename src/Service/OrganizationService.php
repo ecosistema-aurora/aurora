@@ -65,11 +65,11 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         ]);
     }
 
-    public function findBy(array $params = [], int $limit = 50): array
+    public function findBy(array $params = [], int $limit = 50, string $order = 'DESC'): array
     {
         return $this->repository->findBy(
             [...$params, ...$this->getUserParams()],
-            ['createdAt' => 'DESC'],
+            ['createdAt' => $order],
             $limit
         );
     }
@@ -95,11 +95,17 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         return $organization;
     }
 
-    public function list(int $limit = 50, array $params = []): array
+    public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
+        // Garante que o order só aceita 'ASC' ou 'DESC'
+        $order = strtoupper($order);
+        if (!in_array($order, ['ASC', 'DESC'])) {
+            $order = 'DESC'; // Padrão
+        }
+
         return $this->repository->findBy(
             [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => 'DESC'],
+            ['createdAt' => $order],
             $limit
         );
     }
