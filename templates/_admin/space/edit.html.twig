@@ -5,63 +5,40 @@
 {% block content %}
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
-        <div class="management-content w-100 p-4">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="card card-body">
-                        <h2>{{ 'edit_space' | trans }}</h2>
-                        <form method="POST">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">{{ 'name_space' | trans }}</label>
-                                <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        class="form-control"
-                                        value="{{ space.name }}"
-                                        required
-                                >
-                            </div>
+        <div class="entity-edit">
+            {% include "_admin/space/_partials/space-edit-header.html.twig" %}
 
-                            <div class="mb-3">
-                                <label for="description" class="form-label">{{ 'description' | trans }}</label>
-                                <textarea
-                                        id="description"
-                                        name="description"
-                                        class="form-control"
-                                        rows="3"
-                                        maxlength="500"
-                                >{{ space.extrafields.description }}</textarea>
-                            </div>
+            <section class="entity-edit-content mt-4">
+                {% set asterisk = '<span class="text-danger">*</span>' %}
+                <span class="entity-mandatory-fields">{{ 'view.space-edit.mandatory_fields'|trans({'asterisco': asterisk})|raw }}</span>
 
-                            <div class="mb-3">
-                                <label for="date" class="form-label">{{ 'date' | trans }}</label>
-                                <input
-                                        type="datetime-local"
-                                        id="date"
-                                        name="date"
-                                        class="form-control"
-                                        value="{{ space.extrafields.date|default(null)|date('Y-m-d\\TH:i') }}"
-                                        required
-                                >
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                {{ 'save' | trans }}
+                <div class="accordion accordion-flush accordion-cards mt-4" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseOne"
+                                    aria-expanded="true"
+                                    aria-controls="panelsStayOpen-collapseOne">
+                                {{ 'presentation_information' | trans }}
                             </button>
-                            <a href="{{ path('admin_space_list') }}" class="btn btn-secondary">
-                                {{ 'cancel' | trans }}
-                            </a>
-                        </form>
-
-                        {% if error is defined and error %}
-                            <div class="alert alert-danger mt-3">
-                                {{ error }}
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                                <hr>
+                                {% include "_admin/space/_partials/forms/introduction.html.twig" %}
                             </div>
-                        {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            {% if error is defined and error %}
+                <div class="alert alert-danger mt-3">
+                    {{ error }}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

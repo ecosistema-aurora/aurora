@@ -255,6 +255,7 @@ password: Password
 password_strength: Password Strength
 personal_data: Personal Data
 person_disabled: Person with Disability
+presentation_information: Presentation Information
 phone: Phone
 postgraduate: Postgraduate
 photo: Photo
@@ -271,6 +272,7 @@ projects: Projects
 physical: Physical
 project_value: Project value
 public: Public
+public_data_notice: The data entered below will be displayed to all users on the platform.
 public_information: Public Information
 public_phone: Public Telephone
 published: Published
@@ -711,6 +713,9 @@ view:
       last_days: Registered in the last 7 days
     picture: Space Picture
 
+  space-edit:
+    edit-space: Edit Space
+    mandatory_fields: Fields marked with asterisco are mandatory.
 
   registration:
       available: Open and available resources
