@@ -254,6 +254,7 @@ password: Contraseña
 password_strength: Fuerza de la Contraseña
 personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
+presentation_information: Información de presentación
 phone: Teléfono
 postgraduate: Posgrado
 photo: Foto
@@ -270,6 +271,7 @@ projects: Proyectos
 physical: Física
 project_value: Valor del proyecto
 public: Público
+public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
 public_information: Información pública
 public_phone: telefono publico
 published: Publicados
@@ -715,6 +717,10 @@ view:
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
+
+  space-edit:
+    edit-space: Editar Espacio
+    mandatory_fields: Campos marcados con asterisco son obligatorios.
 
   registration:
     available: Recursos abiertos y disponibles
